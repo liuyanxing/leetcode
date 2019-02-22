@@ -35,14 +35,16 @@ class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> res;
-
+        vector<int> tmpList;
+        backtrack(res, tmpList, nums);
+        return res;
     }
     void backtrack(vector<vector<int>> &res, vector<int> &tmpList, vector<int> &nums) {
         if (tmpList.size() == nums.size()) {
-            res.push_back(vector<int>(tmpList.begin(), tmpList.end()));
+            res.push_back(tmpList);
         } else {
             for (int i = 0; i < nums.size(); i++) {
-                if (tmpList.count(nums[i] != 0)) continue;
+                if (count(tmpList.begin(), tmpList.end(), nums[i]) != 0)  continue;
                 tmpList.push_back(nums[i]);
                 backtrack(res, tmpList, nums);
                 tmpList.pop_back();
