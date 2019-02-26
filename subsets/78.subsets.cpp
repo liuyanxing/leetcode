@@ -43,11 +43,14 @@ public:
         vector<int> tmp;
         sort(nums.begin(), nums.end());
         backtrack(0, tmp, nums, res);
+        return res;
     }
-    void backtrack(int start, vector<int> tmp, vector<int>& nums, vector<vector<int>> &res) {
+    void backtrack(int start, vector<int> &tmp, vector<int>& nums, vector<vector<int>> &res) {
         res.push_back(tmp);
         for (int i = start; i < nums.size(); i++) {
-            backtrack(i, tmp, nums, res);
+            tmp.push_back(nums[i]);
+            backtrack(i + 1, tmp, nums, res);
+            tmp.pop_back();
         }
     }
 };
