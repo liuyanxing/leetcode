@@ -54,6 +54,9 @@
 class Solution {
 public:
     int minIncrementForUnique(vector<int>& A) {
+        if (A.size() < 2) {
+            return 0;
+        }
         int ret = 0;
         sort(A.begin(), A.end());
         int last = A[0];
@@ -63,6 +66,8 @@ public:
             if (A[i] <= last) {
                 last = last + 1;
                 ret = ret + last - A[i];
+            } else {
+                last = A[i];
             }
         }
         return ret;
